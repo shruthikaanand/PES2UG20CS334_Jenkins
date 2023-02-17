@@ -1,29 +1,28 @@
 pipeline {
-  agent any
+    agent any
 
-  stages {
-    stage('Build') {
-      steps {
-        sh 'g++ new.cpp -o new'
-      }
-    }
-    
-    stage('Test') {
-      steps {
-        sh './new'
-      }
-    }
-    
-    stage('Deploy') {
-      steps {
-        echo 'Deployed successfully'
-      }
+stages{
+  stage('Build') {
+    steps{
+      sh 'g++ -o PES2UG20CS334 PES2UG20CS334.cpp'
     }
   }
-  
-  post {
+
+  stage('Test') {
+    steps{
+       sh './PES2UG20CS334'
+    }
+  }
+
+  stage('Deploy') {
+    steps{
+      echo 'Deployment successful'
+    }
+  }
+}
+post {
     failure {
-      echo 'Pipeline failed'
+        echo 'Pipeline Failed'
     }
   }
 }
